@@ -6,8 +6,9 @@
     <title>Calendario</title>
 </head>
 <body>
-    <button id="atras">&lt;</button>
-    <button id="adelante">&gt;</button>
+    <button id="retroceder" value="retroceder" onclick="avanzarRetroceder(document.getElementById('retroceder').value)">&lt;</button>
+    <p id="mes">Mes</p>
+    <button id="avanzar" value="avanzar" onclick="avanzarRetroceder(document.getElementById('avanzar').value)">&gt;</button>
 
     <table class="calendario">
         <tr class="dias">

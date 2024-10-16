@@ -40,7 +40,36 @@ function fuerteventura() {
     console.log("Estamos fuerteventura");
 }
 
-function calendario(mes) {
+
+function avanzarRetroceder(valor){
+    let mes = localStorage.getItem("mes");
+    
+    if (valor=="avanzar") {
+        mes++;
+        if (mes>12) {
+            mes = 1;
+        }
+    }else {
+        mes--;
+        if (mes<1) {
+            mes = 12;
+        }
+    }
+
+    localStorage.setItem("mes", mes);
+    open("calendario.html", "_self");
+}
+
+
+function calendario() {
+    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    let mes = localStorage.getItem("mes");
+
+    if (mes==null) {
+        mes=1;
+    }
+
+    document.getElementById("mes").innerHTML = meses[mes-1];
     const strFecha = new Date().getFullYear()+"-"+mes+"-"+"01";
     const fecha = new Date(strFecha);
 
@@ -48,7 +77,7 @@ function calendario(mes) {
     for (let i = 0; i <= 4; i++) {
         for (let j = 0; j <= 6; j++) {
 
-            if (fecha.getMonth()==contador) {
+            if (fecha.getMonth()+1==contador) {
                 if (fecha.getDay()==j) {
                     document.getElementById(i+"."+j).innerHTML = fecha.getDate();
                     fecha.setDate(fecha.getDate()+1);
@@ -58,6 +87,9 @@ function calendario(mes) {
             }
         }
     }
+
+    localStorage.setItem("mes", mes);
+
 }
 
 function isla(){
@@ -87,4 +119,4 @@ function isla(){
     }
 }
 
-calendario(1);
+calendario();
