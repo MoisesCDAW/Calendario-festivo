@@ -40,9 +40,28 @@ function fuerteventura() {
     console.log("Estamos fuerteventura");
 }
 
-function calendario() {
-    var isla = localStorage.getItem("isla");
+function calendario(mes) {
+    const strFecha = new Date().getFullYear()+"-"+mes+"-"+"01";
+    const fecha = new Date(strFecha);
 
+    contador = mes;
+    for (let i = 0; i <= 4; i++) {
+        for (let j = 0; j <= 6; j++) {
+
+            if (fecha.getMonth()==contador) {
+                if (fecha.getDay()==j) {
+                    document.getElementById(i+"."+j).innerHTML = fecha.getDate();
+                    fecha.setDate(fecha.getDate()+1);
+                } 
+            }else {
+                contador++;
+            }
+        }
+    }
+}
+
+function isla(){
+    let isla = localStorage.getItem("isla");
     switch (isla) {
         case "laPalma":
             laPalma();
@@ -68,4 +87,4 @@ function calendario() {
     }
 }
 
-calendario();
+calendario(1);

@@ -6,22 +6,18 @@
     <title>Inicio</title>
 </head>
 <body>
-    <form>
-        <button id="isla" value="laPalma" onclick=inicio()>La Palma</button>
-        <button id="isla" value="elHierro" onclick=inicio()>El Hierro</button>
-        <button id="isla" value="laGomera" onclick=inicio()>La Gomera</button>
-        <button id="isla" value="tenerife" onclick=inicio()>Tenerife</button>
-        <button id="isla" value="granCanaria" onclick=inicio()>Gran Canaria</button>
-        <button id="isla" value="lanzarote" onclick=inicio()>Lanzarote</button>
-        <button id="isla" value="fuerteventura" onclick=inicio()>Fuerteventura</button>
-    </form>
+    <button onclick="inicio('laPalma')">La Palma</button>
+    <button onclick="inicio('elHierro')">El Hierro</button>
+    <button onclick="inicio('laGomera')">La Gomera</button>
+    <button onclick="inicio('tenerife')">Tenerife</button>
+    <button onclick="inicio('granCanaria')">Gran Canaria</button>
+    <button onclick="inicio('lanzarote')">Lanzarote</button>
+    <button onclick="inicio('fuerteventura')">Fuerteventura</button>
 
     <script>
-        function inicio(params) {
-            var isla = document.getElementById("isla").value;
+        function inicio(isla) {
             localStorage.setItem("isla", isla);
-            window.open("calendario.html", "_self");
-            alert();
+            open("calendario.html", "_self");
         }
     </script>
 </body>
