@@ -6,14 +6,24 @@
     <title>Inicio</title>
 </head>
 <body>
-    <a href="">La Palma</a>
-    <a href="">Tenerife</a>
-    <a href="">El Hierro</a>
-    <a href="">La Gomera</a>
-    <a href="">Gran Canaria</a>
-    <a href="">Lanzarote</a>
-    <a href="">Fuerteventura</a>
+    <form>
+        <button id="isla" value="laPalma" onclick=inicio()>La Palma</button>
+        <button id="isla" value="elHierro" onclick=inicio()>El Hierro</button>
+        <button id="isla" value="laGomera" onclick=inicio()>La Gomera</button>
+        <button id="isla" value="tenerife" onclick=inicio()>Tenerife</button>
+        <button id="isla" value="granCanaria" onclick=inicio()>Gran Canaria</button>
+        <button id="isla" value="lanzarote" onclick=inicio()>Lanzarote</button>
+        <button id="isla" value="fuerteventura" onclick=inicio()>Fuerteventura</button>
+    </form>
 
-    <script src="script.js"></script>
+    <script>
+        function inicio(params) {
+            var isla = document.getElementById("isla").value;
+            localStorage.setItem("isla", isla);
+            window.open("calendario.html", "_self");
+            alert();
+        }
+    </script>
 </body>
 </html>
+
