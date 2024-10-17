@@ -110,17 +110,18 @@ function escribeFestivos(numIsla){
     let str = "";
     let isla = festivos[numIsla];
     let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
+    let nomIsla = localStorage.getItem("isla");
 
     for (let i = 0; i < isla.dia.length; i++) {
         str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
         botonFav+"</tr>";
         document.getElementById("diasFestivos").innerHTML += str;
-        document.getElementById("favorito").id += i;
+        document.getElementById("favorito").id = nomIsla +"favorito"+ i;
 
-        if (localStorage.getItem("favorito"+i)=="favorito") {
-            document.getElementById("favorito"+i).classList.add("favorito");
+        if (localStorage.getItem(nomIsla+"favorito"+i)=="favorito") {
+            document.getElementById(nomIsla+"favorito"+i).classList.add("favorito");
         }else {
-            document.getElementById("favorito"+i).classList.add("no-favorito");
+            document.getElementById(nomIsla+"favorito"+i).classList.add("no-favorito");
         }
     }
 }
