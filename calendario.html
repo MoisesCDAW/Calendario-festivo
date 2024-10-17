@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Calendario</title>
 </head>
 <body>
-    <button id="retroceder" value="retroceder" onclick="avanzarRetroceder(document.getElementById('retroceder').value)">&lt;</button>
-    <p id="mes">Mes</p>
-    <button id="avanzar" value="avanzar" onclick="avanzarRetroceder(document.getElementById('avanzar').value)">&gt;</button>
+    <div>
+        <button id="retroceder" value="retroceder" onclick="avanzarRetroceder(document.getElementById('retroceder').value)">&lt;</button>
+        <p id="mes">Mes</p>
+        <button id="avanzar" value="avanzar" onclick="avanzarRetroceder(document.getElementById('avanzar').value)">&gt;</button>
+    </div>
 
-    <table class="calendario">
+    <table id="calendario">
         <tr class="dias">
-            <td>sun</td>
-            <td>mon</td>
-            <td>tue</td>
-            <td>wed</td>
-            <td>tdu</td>
-            <td>fri</td>
-            <td>sat</td>
+            <td>Dom</td>
+            <td>Lun</td>
+            <td>Mar</td>
+            <td>Mi</td>
+            <td>Jue</td>
+            <td>Vi</td>
+            <td>Sa</td>
         </tr>
         <tr id="semana0">
             <td id="0.0"></td>
@@ -64,6 +67,18 @@
             <td id="4.4"></td>
             <td id="4.5"></td>
             <td id="4.6"></td>
+        </tr>
+    </table>
+
+    <br><hr>
+
+    <table id="diasFestivos" width="800px">
+        <tr>
+            <td>Celebreación</td>
+            <td>Día</td>
+            <td>Mes</td>
+            <td>Descripción</td>
+            <td>Costumbres</td>
         </tr>
     </table>
 
