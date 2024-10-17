@@ -77,13 +77,37 @@ function marcaFavorito(boton) {
         document.getElementById(boton.id).classList.add("favorito");
         localStorage.setItem(boton.id, "favorito");
     }
-    
+
     location.reload();
 }
 
-function pintaFestivos(numIsla) {
+
+function escribeFestivos(){
+    let str = "";
+    let isla = festivos[localStorage.getItem("isla")];
+    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
+    let nomIsla = localStorage.getItem("isla");
+
+    document.getElementById("diasFestivos").innerHTML = "";
+
+    for (let i = 0; i < isla.dia.length; i++) {
+        str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
+        botonFav+"</tr>";
+        document.getElementById("diasFestivos").innerHTML += str;
+        document.getElementById("favorito").id = nomIsla +"favorito"+ i;
+
+        if (localStorage.getItem(nomIsla+"favorito"+i)=="favorito") {
+            document.getElementById(nomIsla+"favorito"+i).classList.add("favorito");
+        }else {
+            document.getElementById(nomIsla+"favorito"+i).classList.add("no-favorito");
+        }
+    }
+}
+
+
+function pintaFestivos() {
     let mes = localStorage.getItem("mes");
-    let isla = festivos[numIsla];
+    let isla = festivos[localStorage.getItem("isla")];
     let indices = [];
 
     for (let i = 0; i < isla.mes.length; i++) {
@@ -97,31 +121,10 @@ function pintaFestivos(numIsla) {
             for (let k = 0; k <= 6; k++) { 
                 let valor = document.getElementById(j+"."+k).value;
                 if (valor==isla.dia[indices[i]] && valor!=null) {
-                    document.getElementById(j+"."+k).title = isla.celebracion[indices[i]];
+                    document.getElementById(j+"."+k).title += isla.celebracion[indices[i]];
                     document.getElementById(j+"."+k).classList.add("festivo");
                 }
             }
-        }
-    }
-}
-
-
-function escribeFestivos(numIsla){
-    let str = "";
-    let isla = festivos[numIsla];
-    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
-    let nomIsla = localStorage.getItem("isla");
-
-    for (let i = 0; i < isla.dia.length; i++) {
-        str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
-        botonFav+"</tr>";
-        document.getElementById("diasFestivos").innerHTML += str;
-        document.getElementById("favorito").id = nomIsla +"favorito"+ i;
-
-        if (localStorage.getItem(nomIsla+"favorito"+i)=="favorito") {
-            document.getElementById(nomIsla+"favorito"+i).classList.add("favorito");
-        }else {
-            document.getElementById(nomIsla+"favorito"+i).classList.add("no-favorito");
         }
     }
 }
@@ -181,38 +184,34 @@ function calendario() {
 }
 
 
-function isla(){
-    let isla = localStorage.getItem("isla");
+function isla(isla){
+
     switch (isla) {
         case "laPalma":
-            pintaFestivos(0);
-            escribeFestivos(0);
+            localStorage.setItem("isla",0);
             break;
         case "elHierro":
-            pintaFestivos(1);
-            escribeFestivos(1);
+            localStorage.setItem("isla",1);
             break;  
         case "laGomera":
-            pintaFestivos(2);
-            escribeFestivos(2);
+            localStorage.setItem("isla",2);
             break; 
         case "tenerife":
-            pintaFestivos(3);
-            escribeFestivos(3);
+            localStorage.setItem("isla",3);
             break;
         case "granCanaria":
-            pintaFestivos(4);
-            escribeFestivos(4);
+            localStorage.setItem("isla",4);
             break;
         case "lanzarote":
-            pintaFestivos(5);
-            escribeFestivos(5);
+            localStorage.setItem("isla",5);
             break;
         case "fuerteventura":
-            pintaFestivos(6);
-            escribeFestivos(6);
+            localStorage.setItem("isla",6);
             break;
     }
+
+    pintaFestivos();
+    escribeFestivos();
 }
 
 calendario();

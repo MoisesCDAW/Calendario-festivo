@@ -8,9 +8,9 @@
 </head>
 <body>
     <div>
-        <button id="retroceder" value="retroceder" onclick="avanzarRetroceder(document.getElementById('retroceder').value)">&lt;</button>
+        <button id="retroceder" value="retroceder" onclick="avanzarRetroceder(this.value)">&lt;</button>
         <p id="mes">Mes</p>
-        <button id="avanzar" value="avanzar" onclick="avanzarRetroceder(document.getElementById('avanzar').value)">&gt;</button>
+        <button id="avanzar" value="avanzar" onclick="avanzarRetroceder(this.value)">&gt;</button>
     </div>
 
     <table id="calendario">
@@ -70,6 +70,19 @@
         </tr>
     </table>
 
+    <br><hr><br>
+
+    <div>
+        <button onclick="">Todos</button>
+        <button onclick="isla('laPalma')">La Palma</button>
+        <button onclick="isla('elHierro')">El Hierro</button>
+        <button onclick="isla('laGomera')">La Gomera</button>
+        <button onclick="isla('tenerife')">Tenerife</button>
+        <button onclick="isla('granCanaria')">Gran Canaria</button>
+        <button onclick="isla('lanzarote')">Lanzarote</button>
+        <button onclick="isla('fuerteventura')">Fuerteventura</button>
+    </div>
+
     <br><hr>
 
     <table id="diasFestivos" width="1000px">
@@ -82,6 +95,7 @@
         </tr>
     </table>
 
+    <br>
     <button onclick=volver()>Volver</button>
     <script src="js/script.js"></script>
 </body>
