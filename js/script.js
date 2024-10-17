@@ -62,10 +62,24 @@ const festivos = [
 
 
 function volver(){
-    localStorage.clear();
+    // localStorage.clear();
     open("index.html", "_self");
 }
 
+function marcaFavorito(boton) {
+
+    if (boton.classList=="favorito") {
+        document.getElementById(boton.id).classList.add("no-favorito");
+        localStorage.setItem(boton.id, "no-favorito");
+    }
+
+    if (boton.classList=="no-favorito") {
+        document.getElementById(boton.id).classList.add("favorito");
+        localStorage.setItem(boton.id, "favorito");
+    }
+    
+    location.reload();
+}
 
 function pintaFestivos(numIsla) {
     let mes = localStorage.getItem("mes");
@@ -95,10 +109,19 @@ function pintaFestivos(numIsla) {
 function escribeFestivos(numIsla){
     let str = "";
     let isla = festivos[numIsla];
+    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
 
     for (let i = 0; i < isla.dia.length; i++) {
-        str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td></tr>";
+        str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
+        botonFav+"</tr>";
         document.getElementById("diasFestivos").innerHTML += str;
+        document.getElementById("favorito").id += i;
+
+        if (localStorage.getItem("favorito"+i)=="favorito") {
+            document.getElementById("favorito"+i).classList.add("favorito");
+        }else {
+            document.getElementById("favorito"+i).classList.add("no-favorito");
+        }
     }
 }
 
