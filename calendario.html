@@ -8,9 +8,9 @@
 </head>
 <body>
     <div>
-        <button id="retroceder" value="retroceder" onclick="avanzarRetroceder(this.value)">&lt;</button>
+        <button id="retroceder" value="retroceder" onclick=retroceder()>&lt;</button>
         <p id="mes">Mes</p>
-        <button id="avanzar" value="avanzar" onclick="avanzarRetroceder(this.value)">&gt;</button>
+        <button id="avanzar" value="avanzar" onclick=avanzar()>&gt;</button>
     </div>
 
     <table id="calendario">
@@ -68,6 +68,15 @@
             <td id="4.5"></td>
             <td id="4.6"></td>
         </tr>
+        <tr id="semana5">
+            <td id="5.0"></td>
+            <td id="5.1"></td>
+            <td id="5.2"></td>
+            <td id="5.3"></td>
+            <td id="5.4"></td>
+            <td id="5.5"></td>
+            <td id="5.6"></td>
+        </tr>
     </table>
 
     <br><hr><br>
@@ -85,7 +94,7 @@
 
     <br><hr>
 
-    <table id="diasFestivos" width="1000px">
+    <table id="diasFestivos" width="auto">
         <tr>
             <td>Celebreación</td>
             <td>Día</td>
@@ -95,8 +104,6 @@
         </tr>
     </table>
 
-    <br>
-    <button onclick=volver()>Volver</button>
     <script src="js/script.js"></script>
 </body>
 </html>
