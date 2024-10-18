@@ -72,16 +72,27 @@ function marcaFavorito(boton) {
         localStorage.setItem(boton.id, "no-favorito");
     }
 
-    escribeFestivos();
+    if (localStorage.getItem("isla")==7) {
+        escribeTodos();
+    }else {
+        escribeFestivos();
+    }
 }
 
 function escribeTodos() {
     let str = "";
     let isla = 0;
     let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
-    let nomIsla = localStorage.getItem("isla");
+    let numBotones = [];
 
     document.getElementById("diasFestivos").innerHTML = "<tr><td>Celebración</td><td>Día</td><td>Mes</td><td>Descripción</td><td>Costumbres</td></tr>";
+
+    for (let i = 0; i < festivos.length; i++) {
+        isla = festivos[i];
+        for (let j = 0; j < isla.dia.length; j++) {
+            numBotones.push(numBotones.length);
+        }
+    }
 
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
@@ -89,13 +100,15 @@ function escribeTodos() {
             str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
             botonFav+"</tr>";
             document.getElementById("diasFestivos").innerHTML += str;
-            document.getElementById("favorito").id = nomIsla +"favorito"+ i;
+            document.getElementById("favorito").id = "favorito"+ numBotones[0];
     
-            if (localStorage.getItem(nomIsla+"favorito"+i)=="favorito") {
-                document.getElementById(nomIsla+"favorito"+i).classList.add("favorito");
+            if (localStorage.getItem("favorito"+numBotones[0])=="favorito") {
+                document.getElementById("favorito"+numBotones[0]).classList.add("favorito");
             }else {
-                document.getElementById(nomIsla+"favorito"+i).classList.add("no-favorito");
+                document.getElementById("favorito"+numBotones[0]).classList.add("no-favorito");
             }
+
+            numBotones.shift();
         }
     }
 }
