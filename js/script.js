@@ -60,25 +60,19 @@ const festivos = [
     }
 ];
 
-
-function volver(){
-    // localStorage.clear();
-    open("index.html", "_self");
-}
-
 function marcaFavorito(boton) {
-
-    if (boton.classList=="favorito") {
-        document.getElementById(boton.id).classList.add("no-favorito");
-        localStorage.setItem(boton.id, "no-favorito");
-    }
 
     if (boton.classList=="no-favorito") {
         document.getElementById(boton.id).classList.add("favorito");
         localStorage.setItem(boton.id, "favorito");
     }
 
-    location.reload();
+    if (boton.classList=="favorito") {
+        document.getElementById(boton.id).classList.add("no-favorito");
+        localStorage.setItem(boton.id, "no-favorito");
+    }
+
+    escribeFestivos();
 }
 
 
@@ -116,13 +110,21 @@ function pintaFestivos() {
         }
     }
 
-    for (let i = 0; i < indices.length; i++) {
-        for (let j = 0; j <= 4; j++) {
+    for (let i = 0; i <= indices.length; i++) {
+        for (let j = 0; j <= 5; j++) {
             for (let k = 0; k <= 6; k++) { 
                 let valor = document.getElementById(j+"."+k).value;
-                if (valor==isla.dia[indices[i]] && valor!=null) {
-                    document.getElementById(j+"."+k).title += isla.celebracion[indices[i]];
+
+                if (valor!=isla.dia[indices[0]]) {
+                    if (document.getElementById(j+"."+k).classList=="festivo") {
+                        document.getElementById(j+"."+k).classList.remove("festivo");
+                    }
+                }
+                
+                if (valor==isla.dia[indices[0]] && valor!=null) {
+                    document.getElementById(j+"."+k).title += isla.celebracion[indices[0]];
                     document.getElementById(j+"."+k).classList.add("festivo");
+                    indices.shift();
                 }
             }
         }
@@ -130,23 +132,24 @@ function pintaFestivos() {
 }
 
 
-function avanzarRetroceder(valor){
+function avanzar(){
     let mes = localStorage.getItem("mes");
-    
-    if (valor=="avanzar") {
-        mes++;
-        if (mes>12) {
-            mes = 1;
-        }
-    }else {
-        mes--;
-        if (mes<1) {
-            mes = 12;
-        }
+    mes++;
+    if (mes>12) {
+        mes = 1;
     }
-
     localStorage.setItem("mes", mes);
-    open("calendario.html", "_self");
+    calendario();
+}
+
+function retroceder(){
+    let mes = localStorage.getItem("mes");
+    mes--;
+    if (mes<1) {
+        mes = 12;
+    }
+    localStorage.setItem("mes", mes);
+    calendario();
 }
 
 
@@ -161,26 +164,30 @@ function calendario() {
     document.getElementById("mes").innerHTML = meses[mes-1];
     const strFecha = "2024-"+mes+"-"+"01";
     const fecha = new Date(strFecha);
+    let nomIsla = localStorage.getItem("isla");
 
-    contador = mes;
-    for (let i = 0; i <= 4; i++) {
+    let contador = mes;
+    for (let i = 0; i <= 5; i++) {
         for (let j = 0; j <= 6; j++) {
-
             if (fecha.getMonth()+1==contador) {
                 if (fecha.getDay()==j) {
                     document.getElementById(i+"."+j).value = fecha.getDate();
                     document.getElementById(i+"."+j).innerHTML = fecha.getDate();
                     fecha.setDate(fecha.getDate()+1);
-                } 
+                }else {
+                    document.getElementById(i+"."+j).value = null;
+                    document.getElementById(i+"."+j).innerHTML = null;
+                }
             }else {
-                contador++;
+                document.getElementById(i+"."+j).value = null;
+                document.getElementById(i+"."+j).innerHTML = null;
             }
         }
     }
 
     localStorage.setItem("mes", mes);
-    
-    isla();
+    isla(nomIsla);
+
 }
 
 
