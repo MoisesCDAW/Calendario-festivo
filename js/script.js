@@ -82,7 +82,7 @@ function escribeFestivos(){
     let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
     let nomIsla = localStorage.getItem("isla");
 
-    document.getElementById("diasFestivos").innerHTML = "";
+    document.getElementById("diasFestivos").innerHTML = "<tr><td>Celebreación</td><td>Día</td><td>Mes</td><td>Descripción</td><td>Costumbres</td></tr>";
 
     for (let i = 0; i < isla.dia.length; i++) {
         str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
@@ -122,7 +122,7 @@ function pintaFestivos() {
                 }
                 
                 if (valor==isla.dia[indices[0]] && valor!=null) {
-                    document.getElementById(j+"."+k).title += isla.celebracion[indices[0]];
+                    document.getElementById(j+"."+k).title = isla.celebracion[indices[0]];
                     document.getElementById(j+"."+k).classList.add("festivo");
                     indices.shift();
                 }
@@ -164,7 +164,6 @@ function calendario() {
     document.getElementById("mes").innerHTML = meses[mes-1];
     const strFecha = "2024-"+mes+"-"+"01";
     const fecha = new Date(strFecha);
-    let nomIsla = localStorage.getItem("isla");
 
     let contador = mes;
     for (let i = 0; i <= 5; i++) {
@@ -186,8 +185,8 @@ function calendario() {
     }
 
     localStorage.setItem("mes", mes);
-    isla(nomIsla);
-
+    pintaFestivos();
+    escribeFestivos();
 }
 
 
@@ -215,10 +214,12 @@ function isla(isla){
         case "fuerteventura":
             localStorage.setItem("isla",6);
             break;
+        case "todas":
+            localStorage.setItem("isla", 7);
+            break;
     }
 
-    pintaFestivos();
-    escribeFestivos();
+    calendario();
 }
 
 calendario();
