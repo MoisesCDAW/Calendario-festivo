@@ -84,7 +84,7 @@ function escribeTodos() {
     let isla = 0;
     let tabla = document.getElementById("diasFestivos");
 
-    tabla.innerHTML = "<tr><td>Isla</td><td>Celebración</td><td>Día</td><td>Mes</td><td>Descripción</td><td>Costumbres</td></tr>";
+    tabla.innerHTML = "<tr><th>Isla</th><th>Celebración</th><th>Día</th><th>Mes</th><th>Descripción</th><th>Costumbres</th></tr>";
 
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
@@ -129,10 +129,10 @@ function pintaTodos() {
 function escribeFestivos(){
     let str = "";
     let isla = festivos[localStorage.getItem("isla")];
-    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
+    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)></button></td>";
     let nomIsla = localStorage.getItem("isla");
 
-    document.getElementById("diasFestivos").innerHTML = "<tr><td>Celebración</td><td>Día</td><td>Mes</td><td>Descripción</td><td>Costumbres</td></tr>";
+    document.getElementById("diasFestivos").innerHTML = "<tr><th>Celebración</th><th>Día</th><th>Mes</th><th>Descripción</th><th>Costumbres</th></tr>";
 
     for (let i = 0; i < isla.dia.length; i++) {
         str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
@@ -273,4 +273,5 @@ function isla(isla){
     calendario();
 }
 
+isla("todos");
 calendario();
