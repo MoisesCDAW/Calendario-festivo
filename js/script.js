@@ -105,7 +105,7 @@ function pintaTodos() {
         for (let j = 0; j < festivos[i].dia.length; j++) {
             if (festivos[i].mes[j]==mes) {
                 islasDias.push(festivos[i].dia[j]);
-                celebracion[festivos[i].dia[j]] = festivos[i].celebracion[j];
+                celebracion[festivos[i].dia[j]] = festivos[i].isla +": "+ festivos[i].celebracion[j];
             }     
         }  
     }
@@ -265,7 +265,7 @@ function isla(isla){
         case "fuerteventura":
             localStorage.setItem("isla",6);
             break;
-        case "todas":
+        case "todos":
             localStorage.setItem("isla", 7);
             break;
     }
