@@ -82,69 +82,43 @@ function marcaFavorito(boton) {
 function escribeTodos() {
     let str = "";
     let isla = 0;
-    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)>Favorito</button></td>";
-    let numBotones = [];
+    let tabla = document.getElementById("diasFestivos");
 
-    document.getElementById("diasFestivos").innerHTML = "<tr><td>Celebración</td><td>Día</td><td>Mes</td><td>Descripción</td><td>Costumbres</td></tr>";
-
-    for (let i = 0; i < festivos.length; i++) {
-        isla = festivos[i];
-        for (let j = 0; j < isla.dia.length; j++) {
-            numBotones.push(numBotones.length);
-        }
-    }
+    tabla.innerHTML = "<tr><td>Isla</td><td>Celebración</td><td>Día</td><td>Mes</td><td>Descripción</td><td>Costumbres</td></tr>";
 
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
         for (let i = 0; i < isla.dia.length; i++) {
-            str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
-            botonFav+"</tr>";
-            document.getElementById("diasFestivos").innerHTML += str;
-            document.getElementById("favorito").id = "favorito"+ numBotones[0];
-    
-            if (localStorage.getItem("favorito"+numBotones[0])=="favorito") {
-                document.getElementById("favorito"+numBotones[0]).classList.add("favorito");
-            }else {
-                document.getElementById("favorito"+numBotones[0]).classList.add("no-favorito");
-            }
-
-            numBotones.shift();
+            str = "<tr><td>"+isla.isla+"</td><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td></tr>";
+            tabla.innerHTML += str;
         }
     }
 }
 
 function pintaTodos() {
     let mes = localStorage.getItem("mes");
-    let isla = 0;
-    let indices = [];
+    let dias = document.getElementsByClassName("dia");
+    let islasDias = [];
 
-    for (let a = 0; a < festivos.length; a++) {
-        isla = festivos[a];
+    for (let i = 0; i < festivos.length; i++) {
+        for (let j = 0; j < festivos[i].dia.length; j++) {
+            if (festivos[i].mes[j]==mes) {
+                islasDias.push(festivos[i].dia[j]);
+            }     
+        }  
+    }
 
-        for (let i = 0; i < isla.mes.length; i++) {
-            if (mes==isla.mes[i]) {
-                indices.push(i);
-            }
-        }
-    
-        for (let i = 0; i <= indices.length; i++) {
-            for (let j = 0; j <= 5; j++) {
-                for (let k = 0; k <= 6; k++) { 
-                    let valor = document.getElementById(j+"."+k).value;
-                    
-                    // if (valor!=isla.dia[indices[0]]) {
-                    //     if (document.getElementById(j+"."+k).classList=="festivo") {
-                    //         document.getElementById(j+"."+k).classList.remove("festivo");
-                    //     }
-                    // }
-                    
-                    if (valor==isla.dia[indices[0]] && valor!=null) {
-                        document.getElementById(j+"."+k).title = isla.celebracion[indices[0]];
-                        document.getElementById(j+"."+k).classList.add("festivo");
-                        indices.shift();
-                    }
-                }
-            }
+    // posicion.title = isla.celebracion[isla.dia.indexOf(posicion.value)];
+    islasDias.sort((a,b)=>a-b);
+
+    for (let j = 0; j < dias.length; j++) {
+        let posicion = document.getElementById(dias[j].id);
+
+        if (dias[j].value!=null && dias[j].value == islasDias[0]) {
+            posicion.classList.add("festivo")
+            islasDias.shift();
+        }else {
+            posicion.classList.remove("festivo")
         }
     }
 }
@@ -176,31 +150,24 @@ function escribeFestivos(){
 function pintaFestivos() {
     let mes = localStorage.getItem("mes");
     let isla = festivos[localStorage.getItem("isla")];
-    let indices = [];
+    let dias = document.getElementsByClassName("dia");
+    let islaDias = [];
 
-    for (let i = 0; i < isla.mes.length; i++) {
-        if (mes==isla.mes[i]) {
-            indices.push(i);
-        }
+    for (let i = 0; i < isla.dia.length; i++) {
+        if (isla.mes[i]==mes) {
+            islaDias.push(isla.dia[i]);
+        }     
     }
 
-    for (let i = 0; i <= indices.length; i++) {
-        for (let j = 0; j <= 5; j++) {
-            for (let k = 0; k <= 6; k++) { 
-                let valor = document.getElementById(j+"."+k).value;
+    for (let j = 0; j < dias.length; j++) {
+        let posicion = document.getElementById(dias[j].id);
 
-                if (valor!=isla.dia[indices[0]]) {
-                    if (document.getElementById(j+"."+k).classList=="festivo") {
-                        document.getElementById(j+"."+k).classList.remove("festivo");
-                    }
-                }
-                
-                if (valor==isla.dia[indices[0]] && valor!=null) {
-                    document.getElementById(j+"."+k).title = isla.celebracion[indices[0]];
-                    document.getElementById(j+"."+k).classList.add("festivo");
-                    indices.shift();
-                }
-            }
+        if (dias[j].value!=null && dias[j].value == islaDias[0]) {
+            posicion.title = isla.celebracion[isla.dia.indexOf(posicion.value)];
+            posicion.classList.add("festivo")
+            islaDias.shift();
+        }else {
+            posicion.classList.remove("festivo")
         }
     }
 }
@@ -242,18 +209,20 @@ function calendario() {
     let contador = mes;
     for (let i = 0; i <= 5; i++) {
         for (let j = 0; j <= 6; j++) {
+            let posicion = document.getElementById(i+"."+j);
+
             if (fecha.getMonth()+1==contador) {
                 if (fecha.getDay()==j) {
-                    document.getElementById(i+"."+j).value = fecha.getDate();
-                    document.getElementById(i+"."+j).innerHTML = fecha.getDate();
+                    posicion.value = fecha.getDate();
+                    posicion.innerHTML = fecha.getDate();
                     fecha.setDate(fecha.getDate()+1);
                 }else {
-                    document.getElementById(i+"."+j).value = null;
-                    document.getElementById(i+"."+j).innerHTML = null;
+                    posicion.value = null;
+                    posicion.innerHTML = null;
                 }
             }else {
-                document.getElementById(i+"."+j).value = null;
-                document.getElementById(i+"."+j).innerHTML = null;
+                posicion.value = null;
+                posicion.innerHTML = null;
             }
         }
     }
