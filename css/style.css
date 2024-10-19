@@ -1,13 +1,13 @@
 
 
 .festivo{
-    background-color: rgb(255, 0, 0);
+    background-color: #00A8F0;
     color: white;
     cursor: default;
 }
 
 .favorito {
-    background: rgb(251, 251, 149);
+    background: rgb(255, 255, 0);
     border: none;
     width: 80px;
     height: 30px;

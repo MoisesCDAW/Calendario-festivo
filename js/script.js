@@ -62,12 +62,12 @@ const festivos = [
 
 function marcaFavorito(boton) {
 
-    if (boton.classList=="no-favorito") {
+    if (boton.className=="no-favorito") {
         document.getElementById(boton.id).classList.add("favorito");
         localStorage.setItem(boton.id, "favorito");
     }
 
-    if (boton.classList=="favorito") {
+    if (boton.className=="favorito") {
         document.getElementById(boton.id).classList.add("no-favorito");
         localStorage.setItem(boton.id, "no-favorito");
     }
@@ -99,22 +99,24 @@ function pintaTodos() {
     let mes = localStorage.getItem("mes");
     let dias = document.getElementsByClassName("dia");
     let islasDias = [];
+    let celebracion = {};
 
     for (let i = 0; i < festivos.length; i++) {
         for (let j = 0; j < festivos[i].dia.length; j++) {
             if (festivos[i].mes[j]==mes) {
                 islasDias.push(festivos[i].dia[j]);
+                celebracion[festivos[i].dia[j]] = festivos[i].celebracion[j];
             }     
         }  
     }
 
-    // posicion.title = isla.celebracion[isla.dia.indexOf(posicion.value)];
     islasDias.sort((a,b)=>a-b);
 
     for (let j = 0; j < dias.length; j++) {
         let posicion = document.getElementById(dias[j].id);
 
         if (dias[j].value!=null && dias[j].value == islasDias[0]) {
+            posicion.title = celebracion[islasDias[0]];
             posicion.classList.add("festivo")
             islasDias.shift();
         }else {
@@ -164,10 +166,10 @@ function pintaFestivos() {
 
         if (dias[j].value!=null && dias[j].value == islaDias[0]) {
             posicion.title = isla.celebracion[isla.dia.indexOf(posicion.value)];
-            posicion.classList.add("festivo")
+            posicion.classList.add("festivo");
             islaDias.shift();
         }else {
-            posicion.classList.remove("festivo")
+            posicion.classList.remove("festivo");
         }
     }
 }
