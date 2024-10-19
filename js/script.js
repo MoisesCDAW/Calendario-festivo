@@ -87,7 +87,7 @@ function escribeTodos() {
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
         for (let i = 0; i < isla.dia.length; i++) {
-            let str = "<div class='infoIslas' id='diasFestivos'><div id='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div id='islaCelebracion'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"<br>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
+            let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"</p></div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
             document.getElementById("contenedor-info").innerHTML += str;
         }
     }
@@ -132,7 +132,7 @@ function escribeFestivos(){
 
     document.getElementById("contenedor-info").innerHTML = "";
     for (let i = 0; i < isla.dia.length; i++) {
-        let str = "<div class='infoIslas' id='diasFestivos'><div id='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div id='islaCelebracion'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"<br>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p>"+botonFav+"</div></div>";
+        let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"</p></div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p>"+botonFav+"</div></div>";
         document.getElementById("contenedor-info").innerHTML += str;
         document.getElementById("favorito").id = nomIsla +"favorito"+ i;
 
