@@ -7,7 +7,7 @@
     <title>Calendario</title>
 </head>
 <body>
-    <div class="contenedor">
+    <section class="contenedor">
         <div class="calendario">
             <div class="cabeceraCalendario">
                 <button id="retroceder" value="retroceder" onclick=retroceder()>&lt;</button>
@@ -91,18 +91,11 @@
             <button class="botonIsla lanzarote" onclick="isla('lanzarote')">Lanzarote</button>
             <button class="botonIsla fuerteventura" onclick="isla('fuerteventura')">Fuerteventura</button>
         </div>
-    </div>
+    </section>
 
-    <table class="infoIslas" id="diasFestivos">
-        <tr>
-            <th>Isla</th>
-            <th>Celebración</th>
-            <th>Día</th>
-            <th>Mes</th>
-            <th>Descripción</th>
-            <th>Costumbres</th>
-        </tr>
-    </table>
+    <section class="contenedor-info" id="contenedor-info">
+
+    </section>
 
     <script src="js/script.js"></script>
 </body>

@@ -80,17 +80,15 @@ function marcaFavorito(boton) {
 }
 
 function escribeTodos() {
-    let str = "";
+    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     let isla = 0;
-    let tabla = document.getElementById("diasFestivos");
 
-    tabla.innerHTML = "<tr><th>Isla</th><th>Celebración</th><th>Día</th><th>Mes</th><th>Descripción</th><th>Costumbres</th></tr>";
-
+    document.getElementById("contenedor-info").innerHTML = "";
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
         for (let i = 0; i < isla.dia.length; i++) {
-            str = "<tr><td>"+isla.isla+"</td><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td></tr>";
-            tabla.innerHTML += str;
+            let str = "<div class='infoIslas' id='diasFestivos'><div id='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div id='islaCelebracion'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"<br>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
+            document.getElementById("contenedor-info").innerHTML += str;
         }
     }
 }
@@ -127,17 +125,15 @@ function pintaTodos() {
 
 
 function escribeFestivos(){
-    let str = "";
     let isla = festivos[localStorage.getItem("isla")];
-    let botonFav = "<td><button id='favorito' onclick=marcaFavorito(this)></button></td>";
+    let botonFav = "<button id='favorito' onclick=marcaFavorito(this)></button>";
     let nomIsla = localStorage.getItem("isla");
+    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-    document.getElementById("diasFestivos").innerHTML = "<tr><th>Celebración</th><th>Día</th><th>Mes</th><th>Descripción</th><th>Costumbres</th></tr>";
-
+    document.getElementById("contenedor-info").innerHTML = "";
     for (let i = 0; i < isla.dia.length; i++) {
-        str = "<tr><td>"+isla.celebracion[i]+"</td><td>"+isla.dia[i]+"</td><td>"+isla.mes[i]+"</td><td>"+isla.descripcion[i]+"</td><td>"+isla.costumbres[i]+"</td>"+
-        botonFav+"</tr>";
-        document.getElementById("diasFestivos").innerHTML += str;
+        let str = "<div class='infoIslas' id='diasFestivos'><div id='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div id='islaCelebracion'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"<br>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p>"+botonFav+"</div></div>";
+        document.getElementById("contenedor-info").innerHTML += str;
         document.getElementById("favorito").id = nomIsla +"favorito"+ i;
 
         if (localStorage.getItem(nomIsla+"favorito"+i)=="favorito") {
