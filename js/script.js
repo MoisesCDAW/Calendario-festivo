@@ -1,5 +1,8 @@
+
+/**
+ * Guarda la información a mostrar en la página
+ */
 const festivos = [
-    // YYYY-MM-DD
     {isla:"La Palma", 
         dia:[5, 15, 12, 8], 
         mes:[8, 8, 2, 9],
@@ -60,6 +63,11 @@ const festivos = [
     }
 ];
 
+
+/**
+ * Permite marcar como favorito un día festivo. Solo disponible para la sección de islas individuales
+ * @param {Object<button>} boton De favorito
+ */
 function marcaFavorito(boton) {
 
     if (boton.className=="no-favorito") {
@@ -72,18 +80,21 @@ function marcaFavorito(boton) {
         localStorage.setItem(boton.id, "no-favorito");
     }
 
-    if (localStorage.getItem("isla")==7) {
-        escribeTodos();
-    }else {
-        escribeFestivos();
-    }
+    escribeFestivos();
+
 }
 
+
+/**
+ * Crea todas las tarjetas de la sección "Todos"
+ */
 function escribeTodos() {
     let meses = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."];
     let isla = 0;
 
-    document.getElementById("contenedor-info").innerHTML = "";
+    document.getElementById("contenedor-info").innerHTML = ""; // Elimina las tarjetas anteriores
+
+    // Crea las tarjetas una por una
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
         for (let i = 0; i < isla.dia.length; i++) {
@@ -94,22 +105,26 @@ function escribeTodos() {
     }
 }
 
+
+/**
+ * Pinta los días de todas las islas en la sección "Todos"
+ */
 function pintaTodos() {
     let mes = localStorage.getItem("mes");
     let dias = document.getElementsByClassName("dia");
     let islasDias = [];
-    let celebracion = {};
 
+    // Guarda todos los días que tiene que pintar
     for (let i = 0; i < festivos.length; i++) {
         for (let j = 0; j < festivos[i].dia.length; j++) {
             if (festivos[i].mes[j]==mes) {
                 islasDias.push(festivos[i].dia[j]);
-                celebracion[festivos[i].dia[j]] = festivos[i].isla +": "+ festivos[i].celebracion[j];
             }     
         }  
     }
 
-    islasDias.sort((a,b)=>a-b);
+    // Los ordena de forma ascendente para imprimir en ese mismo orden. Si no se ordena puede que se salte días
+    islasDias.sort((a,b)=>a-b); 
 
     for (let j = 0; j < dias.length; j++) {
         let posicion = document.getElementById(dias[j].id);
@@ -125,19 +140,25 @@ function pintaTodos() {
 }
 
 
+/**
+ * Crea las tarjetas informativas de cada día festivo
+ */
 function escribeFestivos(){
     let isla = festivos[localStorage.getItem("isla")];
-    let botonFav = "<button id='favorito' onclick=marcaFavorito(this)></button>";
+    let botonFav = "<button id='favorito' onclick=marcaFavorito(this)></button>"; // Solo disponible en secciones de islas individuales
     let numIsla = localStorage.getItem("isla");
     let meses = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."];
 
-    document.getElementById("contenedor-info").innerHTML = "";
+    document.getElementById("contenedor-info").innerHTML = ""; // Borra todas las tarjetas anteriores
+
+    // Crea todas las tarjetas correspondientes a una isla
     for (let i = 0; i < isla.dia.length; i++) {
         let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"<p>"+isla.celebracion[i]+"</p></h1>"+botonFav+"</div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
         document.getElementById("contenedor-info").innerHTML += str;
         document.getElementById("favorito").id = numIsla +"favorito"+ i;
         document.getElementById("diasFestivos").id = numIsla+""+isla.dia[i];
 
+        // Verifica si ya era favorito y lo pinta
         if (localStorage.getItem(numIsla+"favorito"+i)=="favorito") {
             document.getElementById(numIsla+"favorito"+i).classList.add("favorito");
         }else {
@@ -147,32 +168,39 @@ function escribeFestivos(){
 }
 
 
+/**
+ * Permite pintar la celda correspondiente a un día festivo. Pinta una o más según sea necesario
+ */
 function pintaFestivos() {
     let mes = localStorage.getItem("mes");
     let isla = festivos[localStorage.getItem("isla")];
     let dias = document.getElementsByClassName("dia");
     let islaDias = [];
 
+    // Guarda en un array todos los días que se van a imprimir de un mes e isla específicos
     for (let i = 0; i < isla.dia.length; i++) {
         if (isla.mes[i]==mes) {
             islaDias.push(isla.dia[i]);
         }     
     }
 
+    // Asigna clases de festivo
     for (let j = 0; j < dias.length; j++) {
         let posicion = document.getElementById(dias[j].id);
 
-        if (dias[j].value!=null && dias[j].value == islaDias[0]) {
-            posicion.innerHTML = "<a href='#"+localStorage.getItem("isla")+''+islaDias[0]+"'>"+posicion.value+"</a>"
+        if (dias[j].value!=null && dias[j].value == islaDias[0]) { // Si el valor de la celda es igual al día festivo de la isla...
+            posicion.innerHTML = "<a href='#"+localStorage.getItem("isla")+''+islaDias[0]+"'>"+posicion.value+"</a>";
             posicion.classList.add("festivo");
             islaDias.shift();
         }else {
-            posicion.classList.remove("festivo");
+            posicion.classList.remove("festivo"); // En caso de que la celda traiga esa clase del mes anterior
         }
     }
 }
 
-
+/**
+ * Permite avanzar el calendario con respecto a los meses. Al llegar a Ene. se reinicia y pinta Dic.
+ */
 function avanzar(){
     let mes = localStorage.getItem("mes");
     mes++;
@@ -183,6 +211,10 @@ function avanzar(){
     calendario();
 }
 
+
+/**
+ * Permite avanzar el calendario con respecto a los meses. Al llegar a Dic. se reinicia y comienza en Ene.
+ */
 function retroceder(){
     let mes = localStorage.getItem("mes");
     mes--;
@@ -194,6 +226,9 @@ function retroceder(){
 }
 
 
+/**
+ * Dibuja el calendario en el HTML y le asigna valores a cada celda de la tabla
+ */
 function calendario() {
     let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     let mes = localStorage.getItem("mes");
@@ -229,6 +264,7 @@ function calendario() {
 
     localStorage.setItem("mes", mes);
 
+    // Si se pulso "Todos", la isla será 7 representando a todas las islas
     if (localStorage.getItem("isla")==7) {
         escribeTodos();
         pintaTodos();
@@ -239,6 +275,13 @@ function calendario() {
 }
 
 
+/**
+ * Operaciones que realiza esta función:
+ * 1. Guarda en el LocalStorage el nombre y número de la isla con la que se ejecutará el programa
+ * 2. Imprime el nombre de la isla en el HTML "Sección actual"
+ * 3. Ejecuta la función calendario
+ * @param {String} isla Se recibe a través del "onclicK" del html
+ */
 function isla(isla){
 
     switch (isla) {
@@ -279,5 +322,4 @@ function isla(isla){
     calendario();
 }
 
-isla("todos");
-calendario();
+isla("todos"); // Siempre carga "Todos" al cargar la página
