@@ -1,23 +1,388 @@
+@font-face {
+    font-family: Quicksand;
+    src: url("../fuentes/Quicksand/static/Quicksand-Regular.ttf");
+}
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    width: 100%;
+    height: 101vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contenedor {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+/*=============================== INFO INICIO ============================= */
+
+.info-inicio {
+    width: 30%;
+    height: 40%;
+    font-family: Quicksand;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    text-align: end;
+    gap: 5%;
+}
+
+.seccion {
+    margin-top: 5%;
+    width: 100%;
+    height: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 2%;
+}
+
+#seccion {
+    width: 30%;
+    height: 100%;
+    border-bottom: 2px solid #00A8F0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*=============================== CALENDARIO ============================= */
+.calendario {
+    background-color: #4d4d4d;
+    padding: 2%;
+    width: 20%;
+    height: auto;
+    color: white;
+    font-family: Quicksand;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 15px #c2c2c2;
+}
+
+.cabeceraCalendario {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight:600;
+    letter-spacing: 1px;
+}
+
+.cabeceraCalendario button {
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-family: Quicksand;
+}
+
+.calendario table {
+    width: 100%;
+    overflow-x: auto
+}
+
+.calendario table td {
+    width: calc(100% / 7);
+    padding: 4%;
+    border-radius: 5px;
+    cursor:default;
+}
+
+.calendario a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+}
+/*=============================== FILTROS POR ISLA ============================= */
+.botonesIslas {
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    gap: 2%;
+}
+
+.botonesIslas button {
+    width: 30%;
+    height: calc(100% / 7);
+    border: none;
+    border-radius: 5px;
+    font-family: Quicksand;
+    letter-spacing: 0.5px;
+    background-color: white;
+    box-shadow:0 0 1.2px #4d4d4d;
+    font-size: 14px;
+}
+
+.botonesIslas button:hover {
+    background-color: #7ecff1;
+    color: white;
+}
+
+.botonesIslas button:active {
+    background-color: #7ecff1;
+    color: white;
+}
+/*=============================== INFORMACIÓN ============================= */
+.contenedor-info {
+    width: 100%;
+    height: 80%;
+    padding-left: 10%;
+    padding-right: 20%;  
+    font-family: Quicksand;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+}
+
+.infoIslas {
+    width: 100%;
+    display: flex;
+}
+
+.fecha{
+    width: 10%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #4d4d4d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 2px #4d4d4d;
+}
+
+.fecha h2{
+    font-size: 16px;
+}
+.fecha p{
+    font-size: 42px;
+}
+
+.islaCelebracion {
+    width: 100%;
+    box-shadow: 0 0 2px #4d4d4d;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 2%;
+}
+
+.titulos {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1%;
+
+}
+
+.titulos h1 {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 4%;
+}
+
+.titulos p {
+    font-size: 18px;
+}
+
+/*=============================== COMPLEMENTOS ============================= */
 .festivo{
     background-color: #00A8F0;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 
 .favorito {
-    background: rgb(255, 255, 0);
-    border: none;
-    width: 80px;
-    height: 30px;
-    cursor: pointer;
+    background: url("../img/favorito.png");
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    border: none;  
 }
 
 .no-favorito {
-    background: rgb(234, 234, 234);
+    background: url("../img/no-favorito.png");
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
     border: none;
-    width: 80px;
-    height: 30px;
-    cursor: pointer;
+}
+
+
+/*=============================== MÓVILES EN HORIZONTAL ============================= */
+@media (width < 1080px){
+    .contenedor {
+        gap: 4%;
+        margin-left: 2%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+    .info-inicio {
+        width: 40%;
+        font-size: 15px;
+    }
+
+    .seccion {
+        font-size: 15px;
+    }
+
+    #seccion {
+        font-size: 15px;
+    }
+
+    .calendario {
+        width: 35%;
+    }
+
+    .botonesIslas {
+        height: 100%;
+    }
+
+    .botonesIslas button{
+        width:60%;
+    }
+    
+    .infoIslas {
+        width: 100%;
+    }
+
+    .fecha h2{
+        font-size: 14px;
+    }
+    .fecha p{
+        font-size: 32px;
+    }
+    
+    .islaCelebracion {
+        font-size: 15px;
+    }
+    
+    .titulos h1 {
+        font-size: 20px;
+    }
+    
+    .titulos p {
+        font-size: 15px;
+    }
+}
+
+
+
+
+/*=============================== MÓVILES ============================= */
+@media (width < 500px){
+    .contenedor {
+        height: 850px;
+        flex-direction: column;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .info-inicio {
+        align-items: center;
+        text-align: center;
+        width: 80%;
+        font-size: 16px;
+    }
+
+    .seccion {
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    #seccion {
+        font-size: 15px;
+    }
+
+    .calendario {
+        margin-top: 2%;
+        width: 75%;
+    }
+
+    .botonesIslas {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10%;
+        padding-left: 15%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .botonesIslas button{
+        width: 35%;
+    }
+
+    .contenedor-info {
+        width: 80%;
+        padding: 0;
+    }
+
+    .infoIslas {
+        flex-direction: column;
+    }
+
+
+    .fecha {
+        width: 100%;
+        border-radius: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        flex-direction: row;
+        gap: 5%;
+    }
+
+    .fecha h2{
+        font-size: 20px;
+    }
+    .fecha p{
+        font-size: 26px;
+    }
+    
+    .islaCelebracion {
+        font-size: 15px;
+        border-radius: 0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        flex-direction: column;
+        padding: 6%;
+    }
+
+    .titulos {
+        padding: 2%;
+    }
+    
+    .titulos h1 {
+        display: flex;
+        flex-direction: column;
+        gap: 4%;
+        width: 100%;
+        font-size: 20px;
+        margin-bottom: 4%;
+    }
+    
+    .titulos p {
+        font-size: 15px;
+    }
 }

@@ -7,103 +7,124 @@
     <title>Calendario</title>
 </head>
 <body>
-    <div>
-        <button id="retroceder" value="retroceder" onclick=retroceder()>&lt;</button>
-        <p id="mes">Mes</p>
-        <button id="avanzar" value="avanzar" onclick=avanzar()>&gt;</button>
-    </div>
+    <section class="contenedor">
+        <div class="info-inicio">
+            <h1>Festivos de Canarias 2024</h1>
+            <p>
+                Puedes filtrar por islas con los botones de la derecha <br>
+                y cambiar de mes con las flechas del calendario <br><br>
+            </p>
+            <div class="seccion">
+                <p>Sección Actual: </p>
+                <p id="seccion">Todos</p>
+            </div>
+        </div>
+        <div class="calendario">
+            <div class="cabeceraCalendario">
+                <button id="retroceder" value="retroceder" onclick=retroceder()>&lt;</button>
+                <p id="mes">Mes</p>
+                <button id="avanzar" value="avanzar" onclick=avanzar()>&gt;</button>
+            </div>
+            <table>
+                <tr class="dias">
+                    <td>dom</td>
+                    <td>lun</td>
+                    <td>mar</td>
+                    <td>mi</td>
+                    <td>jue</td>
+                    <td>vi</td>
+                    <td>sa</td>
+                </tr>
+                <tr id="semana0">
+                    <td class="dia" id="0.0"></td>
+                    <td class="dia" id="0.1"></td>
+                    <td class="dia" id="0.2"></td>
+                    <td class="dia" id="0.3"></td>
+                    <td class="dia" id="0.4"></td>
+                    <td class="dia" id="0.5"></td>
+                    <td class="dia" id="0.6"></td>
+                </tr>
+                <tr id="semana1">
+                    <td class="dia" id="1.0"></td>
+                    <td class="dia" id="1.1"></td>
+                    <td class="dia" id="1.2"></td>
+                    <td class="dia" id="1.3"></td>
+                    <td class="dia" id="1.4"></td>
+                    <td class="dia" id="1.5"></td>
+                    <td class="dia" id="1.6"></td>
+                </tr>
+                <tr id="semana2">
+                    <td class="dia" id="2.0"></td>
+                    <td class="dia" id="2.1"></td>
+                    <td class="dia" id="2.2"></td>
+                    <td class="dia" id="2.3"></td>
+                    <td class="dia" id="2.4"></td>
+                    <td class="dia" id="2.5"></td>
+                    <td class="dia" id="2.6"></td>
+                </tr>
+                <tr id="semana3">
+                    <td class="dia" id="3.0"></td>
+                    <td class="dia" id="3.1"></td>
+                    <td class="dia" id="3.2"></td>
+                    <td class="dia" id="3.3"></td>
+                    <td class="dia" id="3.4"></td>
+                    <td class="dia" id="3.5"></td>
+                    <td class="dia" id="3.6"></td>
+                </tr>
+                <tr id="semana4">
+                    <td class="dia" id="4.0"></td>
+                    <td class="dia" id="4.1"></td>
+                    <td class="dia" id="4.2"></td>
+                    <td class="dia" id="4.3"></td>
+                    <td class="dia" id="4.4"></td>
+                    <td class="dia" id="4.5"></td>
+                    <td class="dia" id="4.6"></td>
+                </tr>
+                <tr id="semana5">
+                    <td class="dia" id="5.0"></td>
+                    <td class="dia" id="5.1"></td>
+                    <td class="dia" id="5.2"></td>
+                    <td class="dia" id="5.3"></td>
+                    <td class="dia" id="5.4"></td>
+                    <td class="dia" id="5.5"></td>
+                    <td class="dia" id="5.6"></td>
+                </tr>
+            </table>
+        </div>
 
-    <table id="calendario">
-        <tr class="dias">
-            <td>Dom</td>
-            <td>Lun</td>
-            <td>Mar</td>
-            <td>Mi</td>
-            <td>Jue</td>
-            <td>Vi</td>
-            <td>Sa</td>
-        </tr>
-        <tr id="semana0">
-            <td class="dia" id="0.0"></td>
-            <td class="dia" id="0.1"></td>
-            <td class="dia" id="0.2"></td>
-            <td class="dia" id="0.3"></td>
-            <td class="dia" id="0.4"></td>
-            <td class="dia" id="0.5"></td>
-            <td class="dia" id="0.6"></td>
-        </tr>
-        <tr id="semana1">
-            <td class="dia" id="1.0"></td>
-            <td class="dia" id="1.1"></td>
-            <td class="dia" id="1.2"></td>
-            <td class="dia" id="1.3"></td>
-            <td class="dia" id="1.4"></td>
-            <td class="dia" id="1.5"></td>
-            <td class="dia" id="1.6"></td>
-        </tr>
-        <tr id="semana2">
-            <td class="dia" id="2.0"></td>
-            <td class="dia" id="2.1"></td>
-            <td class="dia" id="2.2"></td>
-            <td class="dia" id="2.3"></td>
-            <td class="dia" id="2.4"></td>
-            <td class="dia" id="2.5"></td>
-            <td class="dia" id="2.6"></td>
-        </tr>
-        <tr id="semana3">
-            <td class="dia" id="3.0"></td>
-            <td class="dia" id="3.1"></td>
-            <td class="dia" id="3.2"></td>
-            <td class="dia" id="3.3"></td>
-            <td class="dia" id="3.4"></td>
-            <td class="dia" id="3.5"></td>
-            <td class="dia" id="3.6"></td>
-        </tr>
-        <tr id="semana4">
-            <td class="dia" id="4.0"></td>
-            <td class="dia" id="4.1"></td>
-            <td class="dia" id="4.2"></td>
-            <td class="dia" id="4.3"></td>
-            <td class="dia" id="4.4"></td>
-            <td class="dia" id="4.5"></td>
-            <td class="dia" id="4.6"></td>
-        </tr>
-        <tr id="semana5">
-            <td class="dia" id="5.0"></td>
-            <td class="dia" id="5.1"></td>
-            <td class="dia" id="5.2"></td>
-            <td class="dia" id="5.3"></td>
-            <td class="dia" id="5.4"></td>
-            <td class="dia" id="5.5"></td>
-            <td class="dia" id="5.6"></td>
-        </tr>
-    </table>
+        <div class="botonesIslas">
+            <button class="botonIsla todos"onclick="isla('todos')">Todos</button>
+            <button class="botonIsla laPalma" onclick="isla('laPalma')">La Palma</button>
+            <button class="botonIsla elHierro" onclick="isla('elHierro')">El Hierro</button>
+            <button class="botonIsla laGomera" onclick="isla('laGomera')">La Gomera</button>
+            <button class="botonIsla tenerife" onclick="isla('tenerife')">Tenerife</button>
+            <button class="botonIsla granCanaria" onclick="isla('granCanaria')">Gran Canaria</button>
+            <button class="botonIsla lanzarote" onclick="isla('lanzarote')">Lanzarote</button>
+            <button class="botonIsla fuerteventura" onclick="isla('fuerteventura')">Fuerteventura</button>
+        </div>
+    </section>
 
-    <br><hr><br>
-
-    <div>
-        <button class="botonIsla todos"onclick="isla('todos')">Todos</button>
-        <button class="botonIsla laPalma" onclick="isla('laPalma')">La Palma</button>
-        <button class="botonIsla elHierro" onclick="isla('elHierro')">El Hierro</button>
-        <button class="botonIsla laGomera" onclick="isla('laGomera')">La Gomera</button>
-        <button class="botonIsla tenerife" onclick="isla('tenerife')">Tenerife</button>
-        <button class="botonIsla granCanaria" onclick="isla('granCanaria')">Gran Canaria</button>
-        <button class="botonIsla lanzarote" onclick="isla('lanzarote')">Lanzarote</button>
-        <button class="botonIsla fuerteventura" onclick="isla('fuerteventura')">Fuerteventura</button>
-    </div>
-
-    <br><hr>
-
-    <table id="diasFestivos" width="auto">
-        <tr>
-            <td>Isla</td>
-            <td>Celebración</td>
-            <td>Día</td>
-            <td>Mes</td>
-            <td>Descripción</td>
-            <td>Costumbres</td>
-        </tr>
-    </table>
+    <!-- Al ser una sección dinámica, los cambios en esta estructura también deben ser aplicados al script.js en 
+    escribeTodos() y escribeFestivos() para las islas de forma indivual-->
+    <section class="contenedor-info" id="contenedor-info">
+        <div class="infoIslas" id="diasFestivos">
+            <div class="fecha">
+                <h2>Mes</h2>
+                <p>Dia</p>
+            </div>
+            <div class="islaCelebracion">
+                <div class="titulos">
+                    <h1>Isla</h1>
+                    <p>Celebración</p>
+                    <button>Favorito</button> <!-- No está en "Todos" -->
+                </div>
+                <p>
+                    Descripción <br>
+                    Costumbres
+                </p>
+            </div>
+        </div>
+    </section>
 
     <script src="js/script.js"></script>
 </body>
