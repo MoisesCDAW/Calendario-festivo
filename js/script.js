@@ -9,7 +9,7 @@ const festivos = [
             "Danza del Diablo"],
         descripcion: ["Es un culto que llegó a La Palma tras la conquista de la isla en el siglo XV", 
             "Se remontan al siglo XVI, cuando las mujeres del municipio se reunían para vender o intercambiar el pescado capturado",
-            "Sus orígenes se remontan al siglo XIX, cuando se recibía con festejos a los isleños que habían emigrado a Cuba buscando las Américas y volvían presumiendo de las riquezas que habían logrado en su aventura.",
+            "Se remontan al siglo XIX, cuando se recibía con festejos a los isleños que habían emigrado a Cuba buscando las Américas y volvían presumiendo de las riquezas que habían logrado en su aventura.",
             "toma el protagonismo, una antigua costumbre que refleja la lucha entre el bien, representado por la Virgen de la Candelaria, y el mal, personificado por el Diablo."],
         costumbres: ["Cada 5 años se realiza una bajada de la virgen al templo en S/C La Palma desde su santuario acompañada de manifestaciones culturales como la Danza de los Enanos",
             "Los asistentes visten cholas y bañadores, disfrutando del ambiente festivo en la playa. Destaca el 'baile de la Morena', que se realiza en la arena de la misma playa.",
@@ -87,7 +87,7 @@ function escribeTodos() {
     for (let a = 0; a < festivos.length; a++) {
         isla = festivos[a];
         for (let i = 0; i < isla.dia.length; i++) {
-            let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"</p></div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
+            let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"<p>"+isla.celebracion[i]+"</p></h1></div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
             document.getElementById("contenedor-info").innerHTML += str;
         }
     }
@@ -132,7 +132,7 @@ function escribeFestivos(){
 
     document.getElementById("contenedor-info").innerHTML = "";
     for (let i = 0; i < isla.dia.length; i++) {
-        let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"</h1><p>"+isla.celebracion[i]+"</p></div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p>"+botonFav+"</div></div>";
+        let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"<p>"+isla.celebracion[i]+"</p></h1>"+botonFav+"</div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
         document.getElementById("contenedor-info").innerHTML += str;
         document.getElementById("favorito").id = nomIsla +"favorito"+ i;
 
@@ -241,27 +241,35 @@ function isla(isla){
 
     switch (isla) {
         case "laPalma":
+            document.getElementById("seccion").innerHTML = "La Palma";
             localStorage.setItem("isla",0);
             break;
         case "elHierro":
+            document.getElementById("seccion").innerHTML = "El Hierro";
             localStorage.setItem("isla",1);
             break;  
         case "laGomera":
+            document.getElementById("seccion").innerHTML = "La Gomera";
             localStorage.setItem("isla",2);
             break; 
         case "tenerife":
+            document.getElementById("seccion").innerHTML = "Tenerife";
             localStorage.setItem("isla",3);
             break;
         case "granCanaria":
+            document.getElementById("seccion").innerHTML = "Gran Canaria";
             localStorage.setItem("isla",4);
             break;
         case "lanzarote":
+            document.getElementById("seccion").innerHTML = "Lanzarote";
             localStorage.setItem("isla",5);
             break;
         case "fuerteventura":
+            document.getElementById("seccion").innerHTML = "Fuerteventura";
             localStorage.setItem("isla",6);
             break;
         case "todos":
+            document.getElementById("seccion").innerHTML = "Todos";
             localStorage.setItem("isla", 7);
             break;
     }

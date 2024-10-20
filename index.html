@@ -8,6 +8,17 @@
 </head>
 <body>
     <section class="contenedor">
+        <div class="info-inicio">
+            <h1>Festivos de Canarias 2024</h1>
+            <p>
+                Puedes filtrar por islas con los botones de la derecha <br>
+                y cambiar de mes con las flechas del calendario <br><br>
+            </p>
+            <div class="seccion">
+                <p>Sección Actual: </p>
+                <p id="seccion">Todos</p>
+            </div>
+        </div>
         <div class="calendario">
             <div class="cabeceraCalendario">
                 <button id="retroceder" value="retroceder" onclick=retroceder()>&lt;</button>
@@ -103,12 +114,12 @@
                 <div class="titulos">
                     <h1>Isla</h1>
                     <p>Celebración</p>
+                    <button>Favorito</button> <!-- No está en "Todos" -->
                 </div>
                 <p>
                     Descripción <br>
                     Costumbres
                 </p>
-                <button>Favorito</button> <!-- No está en "Todos" -->
             </div>
         </div>
     </section>

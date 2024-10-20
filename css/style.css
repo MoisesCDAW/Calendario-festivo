@@ -17,7 +17,6 @@ body {
     justify-content: center;
 }
 
-/*=============================== CALENDARIO ============================= */
 .contenedor {
     width: 100%;
     height: 80%;
@@ -29,16 +28,47 @@ body {
     padding-bottom: 2%;
 }
 
+.info-inicio {
+    width: 30%;
+    height: 40%;
+    font-family: Quicksand;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    text-align: end;
+    gap: 5%;
+}
+
+.seccion {
+    margin-top: 5%;
+    width: 100%;
+    height: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 2%;
+}
+
+#seccion {
+    width: 30%;
+    height: 100%;
+    border-bottom: 2px solid #00A8F0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*=============================== CALENDARIO ============================= */
 .calendario {
     background-color: #4d4d4d;
     padding: 2%;
-    width: 30%;
+    width: 25%;
     color: white;
     font-family: Quicksand;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -74,14 +104,15 @@ body {
 
 /*=============================== FILTROS POR ISLA ============================= */
 .botonesIslas {
-    width: 15%;
-    height: 100%;
+    width: 30%;
+    height: 80%;
     display: flex;
     flex-flow: column;
     gap: 2%;
 }
 
 .botonesIslas button {
+    width: 30%;
     height: calc(100% / 7);
     border: none;
     border-radius: 5px;
@@ -89,8 +120,7 @@ body {
     letter-spacing: 0.5px;
     background-color: white;
     box-shadow:0 0 1.2px #4d4d4d;
-    color:#4d4d4d;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .botonesIslas button:hover {
@@ -98,7 +128,7 @@ body {
     color: white;
 }
 
-.botonesIslas button:focus {
+.botonesIslas button:active {
     background-color: #7ecff1;
     color: white;
 }
@@ -107,11 +137,61 @@ body {
     width: 100%;
     height: 80%;
     padding-left: 10%;
-    padding-right: 20%;
+    padding-right: 20%;  
+    font-family: Quicksand;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
 }
 
 .infoIslas {
+    display: flex;
+}
 
+.fecha{
+    width: 10%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #4d4d4d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 2px #4d4d4d;
+}
+
+.fecha h2{
+    font-size: 16px;
+}
+.fecha p{
+    font-size: 42px;
+}
+
+.islaCelebracion {
+    width: 80%;
+    box-shadow: 0 0 2px #4d4d4d;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 2%;
+}
+
+.titulos {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1%;
+
+}
+
+.titulos h1 {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 4%;
+}
+
+.titulos p {
+    font-size: 18px;
 }
 
 /*=============================== COMPLEMENTOS ============================= */
