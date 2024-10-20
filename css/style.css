@@ -28,6 +28,8 @@ body {
     padding-bottom: 2%;
 }
 
+/*=============================== INFO INICIO ============================= */
+
 .info-inicio {
     width: 30%;
     height: 40%;
@@ -63,13 +65,15 @@ body {
 .calendario {
     background-color: #4d4d4d;
     padding: 2%;
-    width: 25%;
+    width: 20%;
+    height: auto;
     color: white;
     font-family: Quicksand;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 5px 5px 15px #c2c2c2;
 }
 
 .cabeceraCalendario {
@@ -87,6 +91,8 @@ body {
     border: none;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
+    font-family: Quicksand;
 }
 
 .calendario table {
@@ -95,13 +101,18 @@ body {
 }
 
 .calendario table td {
-    text-align: center;
     width: calc(100% / 7);
     padding: 4%;
     border-radius: 5px;
-    border: 2px solid #4d4d4d;
+    cursor:default;
 }
 
+.calendario a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+}
 /*=============================== FILTROS POR ISLA ============================= */
 .botonesIslas {
     width: 30%;
@@ -145,6 +156,7 @@ body {
 }
 
 .infoIslas {
+    width: 100%;
     display: flex;
 }
 
@@ -169,7 +181,7 @@ body {
 }
 
 .islaCelebracion {
-    width: 80%;
+    width: 100%;
     box-shadow: 0 0 2px #4d4d4d;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -198,7 +210,7 @@ body {
 .festivo{
     background-color: #00A8F0;
     color: white;
-    cursor: default;
+    cursor: pointer;
 }
 
 .favorito {
@@ -206,8 +218,7 @@ body {
     background-size: 100%;
     width: 20px;
     height: 20px;
-    border: none;
-    cursor: pointer;
+    border: none;  
 }
 
 .no-favorito {
@@ -216,5 +227,162 @@ body {
     width: 20px;
     height: 20px;
     border: none;
-    cursor: pointer;
+}
+
+
+/*=============================== MÓVILES EN HORIZONTAL ============================= */
+@media (width < 1080px){
+    .contenedor {
+        gap: 4%;
+        margin-left: 2%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+
+    .info-inicio {
+        width: 40%;
+        font-size: 15px;
+    }
+
+    .seccion {
+        font-size: 15px;
+    }
+
+    #seccion {
+        font-size: 15px;
+    }
+
+    .calendario {
+        width: 35%;
+    }
+
+    .botonesIslas {
+        height: 100%;
+    }
+
+    .botonesIslas button{
+        width:60%;
+    }
+    
+    .infoIslas {
+        width: 100%;
+    }
+
+    .fecha h2{
+        font-size: 14px;
+    }
+    .fecha p{
+        font-size: 32px;
+    }
+    
+    .islaCelebracion {
+        font-size: 15px;
+    }
+    
+    .titulos h1 {
+        font-size: 20px;
+    }
+    
+    .titulos p {
+        font-size: 15px;
+    }
+}
+
+
+
+
+/*=============================== MÓVILES ============================= */
+@media (width < 500px){
+    .contenedor {
+        height: 850px;
+        flex-direction: column;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .info-inicio {
+        align-items: center;
+        text-align: center;
+        width: 80%;
+        font-size: 16px;
+    }
+
+    .seccion {
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    #seccion {
+        font-size: 15px;
+    }
+
+    .calendario {
+        margin-top: 2%;
+        width: 75%;
+    }
+
+    .botonesIslas {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10%;
+        padding-left: 15%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .botonesIslas button{
+        width: 35%;
+    }
+
+    .contenedor-info {
+        width: 80%;
+        padding: 0;
+    }
+
+    .infoIslas {
+        flex-direction: column;
+    }
+
+
+    .fecha {
+        width: 100%;
+        border-radius: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        flex-direction: row;
+        gap: 5%;
+    }
+
+    .fecha h2{
+        font-size: 20px;
+    }
+    .fecha p{
+        font-size: 26px;
+    }
+    
+    .islaCelebracion {
+        font-size: 15px;
+        border-radius: 0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        flex-direction: column;
+        padding: 6%;
+    }
+
+    .titulos {
+        padding: 2%;
+    }
+    
+    .titulos h1 {
+        display: flex;
+        flex-direction: column;
+        gap: 4%;
+        width: 100%;
+        font-size: 20px;
+        margin-bottom: 4%;
+    }
+    
+    .titulos p {
+        font-size: 15px;
+    }
 }

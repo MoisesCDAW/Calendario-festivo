@@ -80,7 +80,7 @@ function marcaFavorito(boton) {
 }
 
 function escribeTodos() {
-    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    let meses = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."];
     let isla = 0;
 
     document.getElementById("contenedor-info").innerHTML = "";
@@ -89,6 +89,7 @@ function escribeTodos() {
         for (let i = 0; i < isla.dia.length; i++) {
             let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"<p>"+isla.celebracion[i]+"</p></h1></div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
             document.getElementById("contenedor-info").innerHTML += str;
+            document.getElementById("diasFestivos").id = localStorage.getItem("isla")+""+isla.dia[i];
         }
     }
 }
@@ -114,7 +115,7 @@ function pintaTodos() {
         let posicion = document.getElementById(dias[j].id);
 
         if (dias[j].value!=null && dias[j].value == islasDias[0]) {
-            posicion.title = celebracion[islasDias[0]];
+            posicion.innerHTML = "<a href='#"+localStorage.getItem("isla")+''+islasDias[0]+"'>"+posicion.value+"</a>"
             posicion.classList.add("festivo")
             islasDias.shift();
         }else {
@@ -127,19 +128,20 @@ function pintaTodos() {
 function escribeFestivos(){
     let isla = festivos[localStorage.getItem("isla")];
     let botonFav = "<button id='favorito' onclick=marcaFavorito(this)></button>";
-    let nomIsla = localStorage.getItem("isla");
-    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    let numIsla = localStorage.getItem("isla");
+    let meses = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."];
 
     document.getElementById("contenedor-info").innerHTML = "";
     for (let i = 0; i < isla.dia.length; i++) {
         let str = "<div class='infoIslas' id='diasFestivos'><div class='fecha'><h2>"+meses[isla.mes[i]-1]+"</h2><p>"+isla.dia[i]+"</p></div><div class='islaCelebracion'><div class='titulos'><h1>"+isla.isla+"<p>"+isla.celebracion[i]+"</p></h1>"+botonFav+"</div><p>"+isla.descripcion[i]+"<br>"+isla.costumbres[i]+"</p></div></div>";
         document.getElementById("contenedor-info").innerHTML += str;
-        document.getElementById("favorito").id = nomIsla +"favorito"+ i;
+        document.getElementById("favorito").id = numIsla +"favorito"+ i;
+        document.getElementById("diasFestivos").id = numIsla+""+isla.dia[i];
 
-        if (localStorage.getItem(nomIsla+"favorito"+i)=="favorito") {
-            document.getElementById(nomIsla+"favorito"+i).classList.add("favorito");
+        if (localStorage.getItem(numIsla+"favorito"+i)=="favorito") {
+            document.getElementById(numIsla+"favorito"+i).classList.add("favorito");
         }else {
-            document.getElementById(nomIsla+"favorito"+i).classList.add("no-favorito");
+            document.getElementById(numIsla+"favorito"+i).classList.add("no-favorito");
         }
     }
 }
@@ -161,7 +163,7 @@ function pintaFestivos() {
         let posicion = document.getElementById(dias[j].id);
 
         if (dias[j].value!=null && dias[j].value == islaDias[0]) {
-            posicion.title = isla.celebracion[isla.dia.indexOf(posicion.value)];
+            posicion.innerHTML = "<a href='#"+localStorage.getItem("isla")+''+islaDias[0]+"'>"+posicion.value+"</a>"
             posicion.classList.add("festivo");
             islaDias.shift();
         }else {
